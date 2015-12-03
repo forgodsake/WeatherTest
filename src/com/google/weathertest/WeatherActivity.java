@@ -21,12 +21,13 @@ public class WeatherActivity extends Activity {
 	private TextView textView3;//最高温度
 	private TextView textView4;//最低温度
 	private TextView textView5;//发布时间
+	private int i = 0;
+	private long date = 0;
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_weather);
-		Toast.makeText(this, getIntent().getStringExtra("get"), Toast.LENGTH_SHORT).show();
 		textView1 = (TextView) findViewById(R.id.textView1);
 		textView2 = (TextView) findViewById(R.id.textView2);
 		textView3 = (TextView) findViewById(R.id.textView6);
@@ -99,6 +100,25 @@ public class WeatherActivity extends Activity {
             e.printStackTrace(); 
         }
         
-    }    
+    } 
+    
+    @Override
+    public void onBackPressed() {
+    	
+    	if(i==0){
+    		date = System.currentTimeMillis();
+    		Toast.makeText(this, "再按一次退出程序~", Toast.LENGTH_SHORT).show();
+    		i++;
+    	}else {
+    		if(System.currentTimeMillis()-date>5000) {
+				Toast.makeText(this, "再按一次退出程序~", Toast.LENGTH_SHORT).show();
+				i=1;
+				date = System.currentTimeMillis();
+			}else {
+				finish();
+			}
+			
+		}
+    }
 	
 }

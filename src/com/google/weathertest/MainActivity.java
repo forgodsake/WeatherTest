@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -177,6 +178,9 @@ public class MainActivity extends Activity {
 			Intent intent = new Intent(MainActivity.this,WeatherActivity.class);
 			intent.putExtra("get", weatherCode);
 			startActivity(intent);
+			finish();
+		}else {
+			Toast.makeText(this, "didn't get weather info", Toast.LENGTH_SHORT).show();
 		}
 	}
 
